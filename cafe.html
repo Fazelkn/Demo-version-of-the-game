@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>تجربه هوشمند میز شما | وب‌اپ بازی و تخفیف</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&display=swap');
+
+    body {
+      font-family: 'Vazirmatn', sans-serif;
+      background: linear-gradient(135deg, #fffde7, #ffe57f);
+      margin: 0;
+      padding: 0;
+      color: #333;
+      direction: rtl;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      background: linear-gradient(to right, #f57c00, #ffb300);
+      width: 100%;
+      padding: 2rem;
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      margin-bottom: 2rem;
+    }
+
+    main {
+      flex-grow: 1;
+      max-width: 600px;
+      width: 90%;
+      background: #fff3e0;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    button {
+      background: linear-gradient(90deg, #fb8c00, #f4511e);
+      border: none;
+      border-radius: 50px;
+      color: white;
+      cursor: pointer;
+      font-size: 1.2rem;
+      font-weight: 700;
+      padding: 1rem 2.5rem;
+      margin: 1rem 0.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    button:hover {
+      background: linear-gradient(90deg, #f4511e, #fb8c00);
+      transform: scale(1.05);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .description {
+      font-size: 1.3rem;
+      line-height: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-note {
+      margin-top: 3rem;
+      font-size: 0.95rem;
+      color: #5d4037;
+      border: 1px dashed #f57c00;
+      padding: 1rem;
+      border-radius: 12px;
+      background: #fff8e1;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    تجربه هوشمند میز شما 🎯
+  </header>
+
+  <main>
+
+    <!-- صفحه اول: معرفی و دکمه شروع -->
+    <section id="page-intro">
+      <div class="description">
+        این وب‌اپ با اسکن یک QR کد ساده روی میز، انتظار در کافه را به یک سرگرمی لذت‌بخش تبدیل می‌کند. <br>
+        با بازی کوتاه، امتیاز بگیرید و تخفیف دریافت کنید — بدون نیاز به نصب هیچ اپلیکیشنی.
+      </div>
+      <button onclick="showPage('page-select')">بازی کن و تخفیف بگیر</button>
+    </section>
+
+    <!-- صفحه دوم: انتخاب بازی کودک یا بزرگسال -->
+    <section id="page-select" class="hidden">
+      <div class="description">لطفا نوع بازی را انتخاب کنید:</div>
+      <button onclick="startGame('بزرگسال')">بازی بزرگسال</button>
+      <button onclick="startGame('کودک')">بازی کودک</button>
+      <br><br>
+      <button style="background:#999;" onclick="showPage('page-intro')">بازگشت</button>
+    </section>
+
+    <!-- صفحه بازی: نمایش پیام بازی -->
+    <section id="page-game" class="hidden">
+      <div class="description" id="game-message"></div>
+      <button onclick="showPage('page-result')">پایان بازی</button>
+    </section>
+
+    <!-- صفحه نتیجه: پیام نهایی -->
+    <section id="page-result" class="hidden">
+      <div class="description">
+        🌟 تبریک! شما امتیاز کسب کردید و <br>
+        🎁 تخفیف شما مستقیما روی فاکتور حساب شده است.
+      </div>
+      <button onclick="showPage('page-intro')">شروع دوباره</button>
+    </section>
+
+  </main>
+
+  <div class="footer-note">
+    ⚠️ توجه: این نسخه، دموی اولیه از پروژه است. نسخه اصلی دارای ویژگی‌های حرفه‌ای‌تر، طراحی جذاب‌تر و اتصال مستقیم به فاکتور فروش خواهد بود تا تخفیف به‌صورت خودکار محاسبه شود.
+  </div>
+
+  <script>
+    function showPage(pageId) {
+      const pages = ['page-intro', 'page-select', 'page-game', 'page-result'];
+      pages.forEach(id => {
+        document.getElementById(id).classList.toggle('hidden', id !== pageId);
+      });
+    }
+
+    function startGame(type) {
+      let message = '';
+      if(type === 'بزرگسال') {
+        message = '🎯 شما وارد بازی بزرگسال شدید! بازی کنید و امتیاز بگیرید.';
+      } else {
+        message = '🧸 شما وارد بازی کودک شدید! سرگرم شوید و امتیاز بگیرید.';
+      }
+      document.getElementById('game-message').innerText = message;
+      showPage('page-game');
+    }
+  </script>
+
+</body>
+</html>
